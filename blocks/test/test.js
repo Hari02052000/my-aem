@@ -1,18 +1,16 @@
 export default function decorate(block) {
-  // Read lines from the block content
-   const lines = [...block.children].map(child => child.textContent.trim());
-   const data = {};
-   console.log(lines)
-  lines.forEach(line => {
+  const lines = [...block.children].map((child) => child.textContent.trim());
+  const data = {};
+
+  lines.forEach((line) => {
     const [key, ...rest] = line.split('\n');
     if (key && rest.length > 0) {
-      data[key.trim().toLowerCase()] = rest.join(':').trim();
+      data[key.trim().toLowerCase()] = rest.join('').trim();
     }
   });
- 
-   // Clear existing content
-   block.innerHTML = '';
-  // Build dynamic HTML
+
+  block.innerHTML = '';
+
   const container = document.createElement('div');
   container.classList.add('test-box');
 
@@ -28,10 +26,10 @@ export default function decorate(block) {
     container.appendChild(p);
   }
 
-  if (data["button text"] && data["button link"]) {
+  if (data['button text'] && data['button link']) {
     const btn = document.createElement('a');
-    btn.textContent = data["button text"];
-    btn.href = data["button link"];
+    btn.textContent = data['button text'];
+    btn.href = data['button link'];
     btn.classList.add('test-button');
     container.appendChild(btn);
   }

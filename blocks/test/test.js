@@ -1,20 +1,17 @@
 export default function decorate(block) {
-    console.log(block)
   // Read lines from the block content
-  const lines = [...block.children].map(child => child.textContent.trim());
-
-  const data = {};
-
+   const lines = [...block.children].map(child => child.textContent.trim());
+   const data = {};
+   console.log(lines)
   lines.forEach(line => {
-    const [key, ...rest] = line.split(':');
+    const [key, ...rest] = line.split('\n');
     if (key && rest.length > 0) {
       data[key.trim().toLowerCase()] = rest.join(':').trim();
     }
   });
-
-  // Clear existing content
-  block.innerHTML = '';
-
+ 
+   // Clear existing content
+   block.innerHTML = '';
   // Build dynamic HTML
   const container = document.createElement('div');
   container.classList.add('test-box');
